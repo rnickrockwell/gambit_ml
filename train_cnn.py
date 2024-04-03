@@ -1,12 +1,16 @@
+
 import os
 import numpy as np
 import pandas as pd
 import json
 from pathlib import Path
 from sklearn.model_selection import train_test_split
+from sklearn.metrics import confusion_matrix
 import tensorflow as tf
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Conv1D, MaxPooling1D, Flatten, Dense, Dropout
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 # Load and preprocess data
 def load_data(data_folder):
@@ -24,7 +28,7 @@ def preprocess_data(data_df):
     label_mapping = {label: idx for idx, label in enumerate(unique_labels)}
     y_remapped = np.array([label_mapping[label] for label in y], dtype=int)
     X = X.reshape((X.shape[0], X.shape[1], 1))  # Reshape for CNN input
-    return X, y_remapped
+    return X, y_remapped, label_mapping
 
 # Define the model
 def build_model(input_shape, num_classes=3):  # Defaulting to 3 classes
@@ -46,7 +50,7 @@ if __name__ == "__main__":
     # Data preparation
     data_folder = Path('training_data')
     concatenated_df = load_data(data_folder)
-    X, y = preprocess_data(concatenated_df)
+    X, y, label_mapping = preprocess_data(concatenated_df)
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.70, stratify=y, random_state=69)
 
     # Model configuration
@@ -54,7 +58,7 @@ if __name__ == "__main__":
     model = build_model(input_shape)
 
     # Training the model
-    history = model.fit(X_train, y_train, epochs=65, batch_size=64, validation_split=0.2)
+    history = model.fit(X_train, y_train, epochs=25, batch_size=64, validation_split=0.2)
 
     # Evaluate the model on the test set
     test_loss, test_accuracy = model.evaluate(X_test, y_test)
@@ -87,5 +91,4 @@ if __name__ == "__main__":
     with open(accuracies_file, 'w') as f:
         json.dump(accuracies, f, indent=4)
 
-
-
+    

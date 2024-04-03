@@ -1,0 +1,34 @@
+{
+    "LogisticRegression": {
+        "Train Accuracy": 0.9175863296546813,
+        "Test Accuracy": 0.9118052774440439
+    },
+    "KNeighbors": {
+        "Train Accuracy": 0.997686009255963,
+        "Test Accuracy": 0.9972856316468651
+    },
+    "GaussianNB": {
+        "Train Accuracy": 0.633499466002136,
+        "Test Accuracy": 0.6312463845503493
+    },
+    "DecisionTree": {
+        "Train Accuracy": 1.0,
+        "Test Accuracy": 0.9466470876162506
+    },
+    "SVM": {
+        "Train Accuracy": 0.9889640441438234,
+        "Test Accuracy": 0.9811774128954746
+    },
+    "MLP": {
+        "Train Accuracy": 0.9982200071199715,
+        "Test Accuracy": 0.9889645352200418
+    },
+    "RandomForest": {
+        "Train Accuracy": 1.0,
+        "Test Accuracy": 0.9854937035553776
+    },
+    "GradientBoosting": {
+        "Train Accuracy": 0.9909220363118547,
+        "Test Accuracy": 0.9632892804698973
+    }
+}
